@@ -26,3 +26,13 @@ export function createElement(name, props = {}, ...children) {
 
   return element;
 }
+
+// Генерация уникального кода
+function generateCode() {
+  let code = 0;
+  return function () {
+    return ++code;
+  };
+}
+
+export const getGenerateCode = generateCode();
