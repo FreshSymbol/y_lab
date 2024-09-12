@@ -29,10 +29,18 @@ export function createElement(name, props = {}, ...children) {
 
 // Генерация уникального кода
 function generateCode() {
-  let code = 0;
+  let code = 7;
   return function () {
     return ++code;
   };
 }
 
 export const getGenerateCode = generateCode();
+
+//Плюрализация
+export function pluralize(number) {
+  const forms = ['раз', 'раза', 'раз'];
+  if (number % 10 === 1 && number % 100 !== 11) return forms[0];
+  else if ([2, 3, 4].includes(number % 10) && ![12, 13, 14].includes(number % 100)) return forms[1];
+  else return forms[2];
+}

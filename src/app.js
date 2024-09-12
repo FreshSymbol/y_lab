@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import { pluralize } from './utils';
 
 /**
  * Приложение
@@ -27,7 +28,8 @@ function App({ store }) {
               >
                 <div className="Item-code">{item.code}</div>
                 <div className="Item-title">
-                  {item.title} {item.count > 0 ? `| Выделяли ${item.count} раз` : ''}
+                  {item.title}
+                  {item.count > 0 ? ` | Выделяли ${item.count} ${pluralize(item.count)}` : ''}
                 </div>
                 <div className="Item-actions">
                   <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
