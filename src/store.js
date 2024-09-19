@@ -1,5 +1,3 @@
-import { generateCode } from './utils';
-
 /**
  * Хранилище состояния приложения
  */
@@ -43,11 +41,22 @@ class Store {
   /**
    * Добавление новой записи
    */
-  addItem() {
-    this.setState({
-      ...this.state,
-      list: [...this.state.list, { code: generateCode(), title: 'Новая запись' }],
-    });
+  addItem(code) {
+    const isContains = this.state.basket.some(item => item.code === code);
+    const containsItem = this.state.basket.find(item => item.code === code);
+    const newItem = { ...this.state.list.find(item => item.code === code), count: 1 };
+
+    if (isContains) {
+      containsItem.count += 1;
+      this.setState({
+        ...this.state,
+        basket: [...this.state.basket],
+      });
+    } else
+      this.setState({
+        ...this.state,
+        basket: [...this.state.basket, newItem],
+      });
   }
 
   /**
@@ -58,29 +67,7 @@ class Store {
     this.setState({
       ...this.state,
       // Новый список, в котором не будет удаляемой записи
-      list: this.state.list.filter(item => item.code !== code),
-    });
-  }
-
-  /**
-   * Выделение записи по коду
-   * @param code
-   */
-  selectItem(code) {
-    this.setState({
-      ...this.state,
-      list: this.state.list.map(item => {
-        if (item.code === code) {
-          // Смена выделения и подсчёт
-          return {
-            ...item,
-            selected: !item.selected,
-            count: item.selected ? item.count : item.count + 1 || 1,
-          };
-        }
-        // Сброс выделения если выделена
-        return item.selected ? { ...item, selected: false } : item;
-      }),
+      basket: this.state.basket.filter(item => item.code !== code),
     });
   }
 }

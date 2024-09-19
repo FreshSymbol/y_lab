@@ -1,0 +1,53 @@
+.Basket {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
+  inset: 0 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.Basket-content {
+  margin-top: 138px;
+  min-width: 960px;
+  background-color: #fff;
+  cursor: auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.Basket-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.Basket-body {
+  width: 100%;
+  padding: 70px 0;
+}
+
+.Basket-button {
+  margin-right: 33px;
+}
+
+.Basket-item {
+  border-bottom: 1px dashed #ccc;
+}
+
+.Basket-isEmpty {
+  text-align: center;
+  font-size: 18px;
+}
+
+.Basket-total {
+  margin: 20px 120px;
+  display: flex;
+  justify-content: end;
+  gap: 50px;
+  font-size: 18px;
+  font-weight: 700;
+}
