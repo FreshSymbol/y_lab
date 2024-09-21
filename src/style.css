@@ -5,3 +5,8 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+.block {
+  overflow: hidden;
+  padding-right: 15px;
+}

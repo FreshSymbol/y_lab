@@ -16,7 +16,7 @@ function Item({ onAction = () => {}, buttonText = '', item = {} }) {
       <div className="Item-title">{item.title}</div>
       <div className="ItemDetails">
         <span>
-          {item.price}
+          {new Intl.NumberFormat().format(item.price)}
           {'\u00A0'}₽
         </span>
         {item.count && (

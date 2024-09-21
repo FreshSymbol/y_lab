@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import './style.css';
 import { plural } from '../../utils';
 
-function Controls({ onOpen = () => {}, totalPrice = 0, basket = [] }) {
+function Controls({ onOpen = () => {}, totalPrice = () => {}, basket = [] }) {
+  console.log(totalPrice());
   return (
     <div className="Controls">
       <p className="Controls-text">
@@ -15,7 +16,7 @@ function Controls({ onOpen = () => {}, totalPrice = 0, basket = [] }) {
                 one: 'товар',
                 few: 'товара',
                 many: 'товаров',
-              })} / ${totalPrice} ₽`}
+              })} / ${new Intl.NumberFormat().format(totalPrice())} ₽`}
         </span>
       </p>
       <button className="Controls-button" onClick={() => onOpen()}>
@@ -32,7 +33,7 @@ Controls.propTypes = {
     }),
   ).isRequired,
   onOpen: PropTypes.func,
-  totalPrice: PropTypes.number,
+  totalPrice: PropTypes.func,
 };
 
 export default React.memo(Controls);

@@ -43,19 +43,19 @@ class Store {
    */
   addItem(code) {
     const isContains = this.state.basket.some(item => item.code === code);
-    const containsItem = this.state.basket.find(item => item.code === code);
     const newItem = { ...this.state.list.find(item => item.code === code), count: 1 };
 
     if (isContains) {
-      containsItem.count += 1;
       this.setState({
         ...this.state,
-        basket: [...this.state.basket],
+        basket: this.state.basket.map(item =>
+          item.code === code ? { ...item, count: item.count + 1 } : item,
+        ),
       });
     } else
       this.setState({
         ...this.state,
-        basket: [...this.state.basket, newItem],
+        basket: [...this.state.basket, { ...newItem }],
       });
   }
 
@@ -69,6 +69,15 @@ class Store {
       // Новый список, в котором не будет удаляемой записи
       basket: this.state.basket.filter(item => item.code !== code),
     });
+  }
+
+  /**
+   * Получение общей суммы
+   */
+  getTotalPrice() {
+    return this.state.basket.reduce((acc, item) => {
+      return acc + item.price * item.count;
+    }, 0);
   }
 }
 

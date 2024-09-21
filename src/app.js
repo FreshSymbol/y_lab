@@ -1,8 +1,9 @@
-import React, { useCallback, useState, useMemo } from 'react';
+import React, { useCallback, useState, useMemo, useEffect } from 'react';
 import List from './components/list';
 import Basket from './components/basket';
 import Controls from './components/controls';
 import Head from './components/head';
+import Modal from './components/modal';
 import PageLayout from './components/page-layout';
 import './style.css';
 
@@ -16,13 +17,10 @@ function App({ store }) {
   const basket = store.getState().basket;
   const [isOpen, setIsOpen] = useState(false);
 
-  const totalPrice = useMemo(
-    () =>
-      basket.reduce((acc, item) => {
-        return acc + item.price * item.count;
-      }, 0),
-    [basket],
-  );
+  useEffect(() => {
+    if (isOpen) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'auto';
+  }, [isOpen]);
 
   const callbacks = {
     onDeleteItem: useCallback(
@@ -39,6 +37,10 @@ function App({ store }) {
       [store],
     ),
 
+    getTotalPrice: useCallback(() => {
+      return store.getTotalPrice();
+    }, [store]),
+
     onOpen: useCallback(() => {
       setIsOpen(true);
     }, [isOpen]),
@@ -49,17 +51,18 @@ function App({ store }) {
   };
 
   return (
-    <PageLayout>
+    <PageLayout isOpen={isOpen}>
       <Head title="Магазин" />
-      <Controls onOpen={callbacks.onOpen} basket={basket} totalPrice={totalPrice} />
-      <List list={list} onAddItem={callbacks.onAddItem} />
+      <Controls onOpen={callbacks.onOpen} basket={basket} totalPrice={callbacks.getTotalPrice} />
+      <List list={list} onAction={callbacks.onAddItem} buttonText="Добавить" />
       {isOpen && (
-        <Basket
-          basket={basket}
-          onClose={callbacks.onClose}
-          onDeleteItem={callbacks.onDeleteItem}
-          totalPrice={totalPrice}
-        />
+        <Modal onClose={callbacks.onClose} title="Корзина">
+          <Basket
+            basket={basket}
+            onDeleteItem={callbacks.onDeleteItem}
+            totalPrice={callbacks.getTotalPrice}
+          />
+        </Modal>
       )}
     </PageLayout>
   );
