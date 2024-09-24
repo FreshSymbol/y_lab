@@ -5,7 +5,7 @@ import { cn as bem } from '@bem-react/classname';
 import PropTypes from 'prop-types';
 import './style.css';
 
-function ItemBasket(props) {
+function ItemBasket(props = { onRemove: () => {} }) {
   const cn = bem('ItemBasket');
 
   const callbacks = {
@@ -35,10 +35,6 @@ ItemBasket.propTypes = {
     amount: PropTypes.number,
   }).isRequired,
   onRemove: propTypes.func,
-};
-
-ItemBasket.defaultProps = {
-  onRemove: () => {},
 };
 
 export default memo(ItemBasket);
