@@ -1,0 +1,6 @@
+.Pagination {
+  margin: 22px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}

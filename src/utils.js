@@ -33,3 +33,32 @@ export function codeGenerator(start = 0) {
 export function numberFormat(value, locale = 'ru-RU', options = {}) {
   return new Intl.NumberFormat(locale, options).format(value);
 }
+
+/**
+ * Генератор масива страниц
+ * @param pageCount {Number}
+ * @param currentPage {Number}
+ * @returns {Array}
+ */
+export const generatePageNumber = (pageQuantity, currentPage) => {
+  const defaultPageQuantity = 5;
+  const pages = [];
+
+  if (pageQuantity <= 1) return [1];
+  else if (pageQuantity <= defaultPageQuantity)
+    for (let i = 1; i <= pageQuantity; i++) {
+      pages.push(i);
+    }
+  else {
+    if (currentPage < 3) pages.push(1, 2, 3, '...', pageQuantity);
+    else if (currentPage === 3) pages.push(1, 2, 3, 4, '...', pageQuantity);
+    else if (currentPage === pageQuantity || currentPage === pageQuantity - 1) {
+      pages.push(1, '...', pageQuantity - 2, pageQuantity - 1, pageQuantity);
+    } else {
+      const prevPage = Math.max(currentPage - 1, 2);
+      const nextPage = Math.min(currentPage + 1, pageQuantity - 1);
+      pages.push(1, '...', prevPage, currentPage, nextPage, '...', pageQuantity);
+    }
+  }
+  return pages;
+};
