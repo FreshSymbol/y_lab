@@ -6,7 +6,7 @@ import BasketTool from '../../components/basket-tool';
 import List from '../../components/list';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
-import Pagination from '../../components/pagination/Pagination';
+import Pagination from '../../components/pagination/';
 import { generatePageNumber } from '../../utils';
 
 function Main() {

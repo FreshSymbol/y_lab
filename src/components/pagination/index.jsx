@@ -1,7 +1,8 @@
 import { memo } from 'react';
-import ItemPagination from '../item-pagination/ItemPagination';
+import ItemPagination from '../item-pagination';
 import { cn as bem } from '@bem-react/classname';
 import './style.css';
+import PropTypes from 'prop-types';
 
 function Pagination({ pages = [], currentPage = 0, setCurrentPage = () => {} }) {
   const cn = bem('Pagination');
@@ -19,5 +20,11 @@ function Pagination({ pages = [], currentPage = 0, setCurrentPage = () => {} }) 
     </div>
   );
 }
+
+Pagination.propTypes = {
+  pages: PropTypes.array,
+  currentPage: PropTypes.number,
+  setCurrentPage: PropTypes.func,
+};
 
 export default memo(Pagination);

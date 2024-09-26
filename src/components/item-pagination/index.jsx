@@ -1,5 +1,6 @@
 import { cn as bem } from '@bem-react/classname';
 import { memo } from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
 function ItemPagination({ number = 0, currentPage = 1, onClick = () => {} }) {
@@ -16,4 +17,9 @@ function ItemPagination({ number = 0, currentPage = 1, onClick = () => {} }) {
   );
 }
 
+ItemPagination.propTypes = {
+  number: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  currentPage: PropTypes.number,
+  onClick: PropTypes.func,
+};
 export default memo(ItemPagination);

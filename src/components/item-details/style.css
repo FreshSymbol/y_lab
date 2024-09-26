@@ -1,0 +1,21 @@
+.ItemDetails {
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.ItemDetails-accent {
+  font-weight: bold;
+}
+
+.ItemDetails-price {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.ItemDetails-button {
+  max-width: 76px;
+  cursor: pointer;
+}
