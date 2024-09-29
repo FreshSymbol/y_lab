@@ -2,17 +2,7 @@
 .BasketTool {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
   font-size: 18px;
-}
-
-.BasketTool-link {
-  color: #0087e9;
-  text-decoration: none;
-}
-
-.BasketTool-link:hover {
-  text-decoration: underline;
 }
 
 .BasketTool-total {

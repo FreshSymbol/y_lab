@@ -6,6 +6,8 @@ import BasketTool from '../../components/basket-tool';
 import PageLayout from '../../components/page-layout';
 import Head from '../../components/head';
 import ItemDetails from '../../components/item-details';
+import Menu from '../../components/menu';
+import PageTool from '../../components/page-tool';
 
 function Item() {
   const store = useStore();
@@ -28,10 +30,20 @@ function Item() {
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
   };
 
+  const menuList = [
+    {
+      text: 'Главная',
+      to: '/',
+    },
+  ];
+
   return (
     <PageLayout>
       <Head title={select.item.title} />
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      <PageTool>
+        <Menu menuList={menuList} />
+        <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      </PageTool>
       <ItemDetails
         item={select.item}
         onAdd={callbacks.addToBasket}

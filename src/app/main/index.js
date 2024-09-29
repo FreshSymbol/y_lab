@@ -7,7 +7,9 @@ import List from '../../components/list';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import Pagination from '../../components/pagination/';
+import Menu from '../../components/menu/';
 import { generatePageNumber } from '../../utils';
+import PageTool from '../../components/page-tool';
 
 function Main() {
   const store = useStore();
@@ -50,6 +52,13 @@ function Main() {
     ),
   };
 
+  const menuList = [
+    {
+      text: 'Главная',
+      to: '/',
+    },
+  ];
+
   useEffect(() => {
     store.actions.catalog.load(limit, skip);
     store.actions.catalog.getAllItemQuantity();
@@ -58,7 +67,10 @@ function Main() {
   return (
     <PageLayout>
       <Head title="Магазин" />
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      <PageTool>
+        <Menu menuList={menuList} />
+        <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      </PageTool>
       <List list={select.list} renderItem={renders.item} />
       <Pagination
         pages={pages}
