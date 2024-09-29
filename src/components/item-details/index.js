@@ -2,7 +2,6 @@ import { cn as bem } from '@bem-react/classname';
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
-import item from '../item';
 
 function ItemDetails({ item = {}, onAdd = () => {}, madeIn = {}, category = {} }) {
   const cn = bem('ItemDetails');
@@ -25,7 +24,7 @@ function ItemDetails({ item = {}, onAdd = () => {}, madeIn = {}, category = {} }
       <p className={cn('price')}>{`Цена: ${item.price} ₽`}</p>
       <button
         onClick={() => {
-          onAdd(item._id);
+          onAdd(item._id, item);
         }}
         className={cn('button')}
       >

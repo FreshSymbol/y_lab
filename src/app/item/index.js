@@ -26,7 +26,7 @@ function Item() {
   }));
 
   const callbacks = {
-    addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
+    addToBasket: useCallback((_id, item) => store.actions.basket.addToBasket(_id, item), [store]),
     openModalBasket: useCallback(() => store.actions.modals.open('basket'), [store]),
   };
 
