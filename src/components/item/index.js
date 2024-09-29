@@ -5,7 +5,7 @@ import { numberFormat } from '../../utils';
 import './style.css';
 import { Link } from 'react-router-dom';
 
-function Item(props = { onAdd: () => {} }) {
+function Item(props = { onAdd: () => {}, item: {}, path: '' }) {
   const cn = bem('Item');
 
   const callbacks = {
@@ -15,7 +15,7 @@ function Item(props = { onAdd: () => {} }) {
   return (
     <div className={cn()}>
       {/*<div className={cn('code')}>{props.item._id}</div>*/}
-      <Link to={`articles/${props.item._id}`} className={cn('title')}>
+      <Link to={`${props.path}/${props.item._id}`} className={cn('title')}>
         {props.item.title}
       </Link>
       <div className={cn('actions')}>
