@@ -8,10 +8,19 @@ class AuthState extends StoreModule {
       email: '',
       error: '',
       isAuth: false,
+      waiting: false,
     };
   }
 
   async login(data) {
+    this.setState(
+      {
+        ...this.getState(),
+        waiting: true,
+      },
+      'Установлены параметры аутентификации',
+    );
+
     try {
       const res = await fetch('/api/v1/users/sign', {
         method: 'POST',
@@ -28,6 +37,7 @@ class AuthState extends StoreModule {
           user: json.result.user,
           isAuth: true,
           error: '',
+          waiting: false,
         });
         localStorage.setItem('token', json.result.token);
       } else
@@ -44,6 +54,14 @@ class AuthState extends StoreModule {
   }
 
   async logout() {
+    this.setState(
+      {
+        ...this.getState(),
+        waiting: true,
+      },
+      'Установлены параметры аутентификации',
+    );
+
     try {
       const res = await fetch('/api/v1/users/sign', {
         method: 'DELETE',
@@ -57,6 +75,7 @@ class AuthState extends StoreModule {
         this.setState({
           ...this.getState(),
           isAuth: false,
+          waiting: false,
         });
         localStorage.removeItem('token');
       }
@@ -69,6 +88,14 @@ class AuthState extends StoreModule {
   }
 
   async getProfile(token) {
+    this.setState(
+      {
+        ...this.getState(),
+        waiting: true,
+      },
+      'Установлены параметры аутентификации',
+    );
+
     try {
       const res = await fetch('/api/v1/users/self/?fields=*', {
         method: 'GET',
@@ -84,6 +111,7 @@ class AuthState extends StoreModule {
           ...this.getState(),
           email: json.result.email,
           profile: json.result.profile,
+          waiting: false,
         });
       }
     } catch (error) {
