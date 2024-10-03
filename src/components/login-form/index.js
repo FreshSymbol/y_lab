@@ -31,12 +31,12 @@ function LoginForm() {
       <h2>{t('form.title')}</h2>
       <div className={cn('field')}>
         <label htmlFor="login">{t('form.login')}</label>
-        <input type="text" id="login" name="login" />
+        <input className={cn('input')} type="text" id="login" name="login" />
       </div>
 
       <div className={cn('field')}>
         <label htmlFor="password">{t('form.password')}</label>
-        <input type="password" id="password" name="password" />
+        <input className={cn('input')} type="password" id="password" name="password" />
       </div>
 
       {select.error && <span className={cn('error')}>{select.error}</span>}

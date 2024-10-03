@@ -11,6 +11,9 @@
   flex-direction: column;
 }
 
+.LoginForm-input {
+  min-width: 195px;
+}
 .LoginForm-error {
   color: #ff0000;
 }
