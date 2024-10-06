@@ -10,7 +10,7 @@ function Protected({ children }) {
   const location = useLocation();
 
   if (!select.isAuth && location.pathname !== '/login') {
-    return <Navigate to={'/login'} state={{ from: location }} />;
+    return <Navigate to={'/login'} state={{ from: location.pathname }} />;
   }
 
   if (select.isAuth && location.pathname === '/login') {
