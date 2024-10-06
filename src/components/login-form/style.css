@@ -6,6 +6,10 @@
   gap: 20px;
 }
 
+.LoginForm-title {
+  margin-bottom: -8px;
+}
+
 .LoginForm-field {
   display: flex;
   flex-direction: column;
@@ -13,6 +17,7 @@
 
 .LoginForm-input {
   min-width: 195px;
+  padding: 3px;
 }
 .LoginForm-error {
   color: #ff0000;

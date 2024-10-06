@@ -28,7 +28,7 @@ function LoginForm() {
 
   return (
     <form className={cn()} onSubmit={handleSubmit} name="form">
-      <h2>{t('form.title')}</h2>
+      <h2 className={cn('title')}>{t('form.title')}</h2>
       <div className={cn('field')}>
         <label htmlFor="login">{t('form.login')}</label>
         <input className={cn('input')} type="text" id="login" name="login" />
