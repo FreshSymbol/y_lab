@@ -43,7 +43,7 @@ class AuthState extends StoreModule {
       } else
         this.setState({
           ...this.getState(),
-          error: json.error.message,
+          error: json.error.data.issues[0].message,
         });
     } catch (error) {
       this.setState({
@@ -85,6 +85,13 @@ class AuthState extends StoreModule {
         error: error.message,
       });
     }
+  }
+
+  resetError() {
+    this.setState({
+      ...this.getState(),
+      error: '',
+    });
   }
 
   async getProfile(token) {

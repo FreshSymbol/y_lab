@@ -25,6 +25,7 @@ function Navigation() {
     onNavigate: useCallback(
       item => {
         if (item.key === 1) store.actions.catalog.resetParams();
+        store.actions.auth.resetError();
       },
       [store],
     ),
