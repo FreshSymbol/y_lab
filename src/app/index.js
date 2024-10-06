@@ -18,17 +18,9 @@ function App() {
   const store = useStore();
   const select = useSelector(state => ({ isAuth: state.auth.isAuth, user: state.auth.user }));
 
-  useInit(
-    () => {
-      store.actions.catalog.fetchCategories();
-    },
-    [],
-    true,
-  );
-
   useInit(() => {
     store.actions.auth.checkAuth();
-    if (select.isAuth) store.actions.auth.getProfile(localStorage.getItem('token'));
+    if (select.isAuth) store.actions.profile.getProfile();
   }, [select.isAuth, select.user]);
   return (
     <>

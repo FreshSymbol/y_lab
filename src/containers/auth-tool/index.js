@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import useSelector from '../../hooks/use-selector';
 import useTranslate from '../../hooks/use-translate';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useStore from '../../hooks/use-store';
-import './style.css';
+import Auth from '../../components/auth';
 
 function AuthTool() {
   const store = useStore();
@@ -19,18 +19,17 @@ function AuthTool() {
 
   const select = useSelector(state => ({
     isAuth: state.auth.isAuth,
-    name: state.auth.profile.name,
+    name: state.profile.profile.name,
   }));
 
   return (
-    <div className="AuthTool">
-      {select.isAuth && <Link to="/profile">{select.name}</Link>}
-      {select.isAuth ? (
-        <button onClick={callbacks.onLogout}>{t('auth.logout')}</button>
-      ) : (
-        <button onClick={callbacks.onLogin}>{t('auth.login')}</button>
-      )}
-    </div>
+    <Auth
+      onLogin={callbacks.onLogin}
+      onLogout={callbacks.onLogout}
+      userName={select.name}
+      isAuth={select.isAuth}
+      t={t}
+    />
   );
 }
 

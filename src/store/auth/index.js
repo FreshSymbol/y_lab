@@ -4,8 +4,6 @@ class AuthState extends StoreModule {
   initState() {
     return {
       user: {},
-      profile: {},
-      email: '',
       error: '',
       isAuth: false,
       waiting: false,
@@ -92,41 +90,6 @@ class AuthState extends StoreModule {
       ...this.getState(),
       error: '',
     });
-  }
-
-  async getProfile(token) {
-    this.setState(
-      {
-        ...this.getState(),
-        waiting: true,
-      },
-      'Установлены параметры аутентификации',
-    );
-
-    try {
-      const res = await fetch('/api/v1/users/self/?fields=*', {
-        method: 'GET',
-        headers: {
-          'X-Token': token,
-          'Content-Type': 'application/json',
-        },
-      });
-      const json = await res.json();
-
-      if (res.ok) {
-        this.setState({
-          ...this.getState(),
-          email: json.result.email,
-          profile: json.result.profile,
-          waiting: false,
-        });
-      }
-    } catch (error) {
-      this.setState({
-        ...this.getState(),
-        error: error.message,
-      });
-    }
   }
 
   checkAuth() {

@@ -9,9 +9,9 @@ function ProfileInfo() {
   const { t } = useTranslate();
 
   const select = useSelector(state => ({
-    name: state.auth.profile.name,
-    phone: state.auth.profile.phone,
-    email: state.auth.email,
+    name: state.profile.profile.name,
+    phone: state.profile.profile.phone,
+    email: state.profile.email,
   }));
 
   return (
