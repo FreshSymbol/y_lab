@@ -1,0 +1,17 @@
+.CommentLayout {
+  padding: 12px 40px 110px;
+}
+
+.CommentLayout-title {
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.CommentLayout-list {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}

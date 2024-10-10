@@ -1,0 +1,27 @@
+.Comment {
+  font-size: 14px;
+  line-height: 16.1px;
+}
+
+.Comment-name {
+  margin-right: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 13.8px;
+}
+
+.Comment-date {
+  font-size: 12px;
+  line-height: 13.8px;
+  color: #666666;
+}
+
+.Comment-button {
+  margin-left: -6px;
+  font-size: 12px;
+  line-height: 13.8px;
+  color: #0087e9;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

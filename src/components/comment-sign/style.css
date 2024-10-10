@@ -1,0 +1,23 @@
+.CommentSign {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.CommentSign_small {
+  font-size: 16px;
+}
+
+.CommentSign-link {
+  color: #0087e9;
+  cursor: pointer;
+}
+
+.CommentSign-cancel {
+  font-size: inherit;
+  color: #666666;
+  cursor: pointer;
+  text-decoration: underline;
+  background-color: transparent;
+  border: none;
+}
